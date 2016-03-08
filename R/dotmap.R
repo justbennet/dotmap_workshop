@@ -17,8 +17,13 @@ zoom = 14;
 # Convert coordinates to quadkey
 print("Reading in shapefiles")
 
-# Create a vector of the FIPS codes
-states = c(33,50)
+# Read state FIPS codes from a file.
+# Note:  single-digit codes must be left-zero-padded, e.g., "03"
+states = readLines('../states.txt')
+
+# Create a vector of the FIPS codes override for testing
+# New Hampshire and Vermont
+states = c("33", "50")
 
 for (state in states){
     shape= readOGR('shapefiles',paste("tabblock2010_",state,"_pophu",sep=""))
